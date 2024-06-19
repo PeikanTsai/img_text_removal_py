@@ -29,7 +29,7 @@ def detect_shapes_and_lines(input_image_path, output_dir):
     if lines is not None:
         for line in lines:
             for x1, y1, x2, y2 in line:
-                cv2.line(line_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.line(line_image, (x1, y1), (x2, y2), (0, 0, 0), 2)  # Black color
 
     # Save the line image for debugging
     line_image_path = os.path.join(output_dir, 'lines.png')
@@ -40,7 +40,7 @@ def detect_shapes_and_lines(input_image_path, output_dir):
 
     # Draw contours on the image
     contour_image = image.copy()
-    cv2.drawContours(contour_image, contours, -1, (0, 255, 0), 2)
+    cv2.drawContours(contour_image, contours, -1, (0, 0, 0), 2)  # Black color
 
     # Save the contour image for debugging
     contour_image_path = os.path.join(output_dir, 'contours.png')
@@ -54,10 +54,10 @@ def detect_shapes_and_lines(input_image_path, output_dir):
         if lines is not None:
             for line in lines:
                 for x1, y1, x2, y2 in line:
-                    svg_file.write('<line x1="{}" y1="{}" x2="{}" y2="{}" style="stroke:rgb(0,255,0);stroke-width:2" />\n'.format(x1, y1, x2, y2))
+                    svg_file.write('<line x1="{}" y1="{}" x2="{}" y2="{}" style="stroke:rgb(0,0,0);stroke-width:2" />\n'.format(x1, y1, x2, y2))
         for contour in contours:
             points = " ".join(["{},{}".format(point[0][0], point[0][1]) for point in contour])
-            svg_file.write('<polygon points="{}" style="fill:none;stroke:rgb(0,255,0);stroke-width:2" />\n'.format(points))
+            svg_file.write('<polygon points="{}" style="fill:none;stroke:rgb(0,0,0);stroke-width:2" />\n'.format(points))
         svg_file.write('</svg>')
 
 if __name__ == "__main__":
